@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box2Business (B2B) - Rastreabilidade e Acondicionamento Inteligente</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #c74b74;
+            --dark-purple: #70284a;
+            --light-pink: #fdf2f5;
+            --text-color: #333333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-container svg, .logo-icon {
+            width: 45px;
+            height: 45px;
+        }
+
+        .logo-container h1 {
+            font-size: 1.2rem;
+            color: var(--dark-purple);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-pink);
+        }
+
+        .cta-header {
+            background-color: var(--primary-pink);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .cta-header:hover {
+            background-color: var(--dark-purple);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 5% 80px 5%;
+            background: linear-gradient(135deg, var(--light-pink) 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 90vh;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h2 {
+            font-size: 2.8rem;
+            color: var(--dark-purple);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn-main {
+            background-color: var(--primary-pink);
+            color: var(--white);
+            padding: 14px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(199, 75, 116, 0.3);
+        }
+
+        .btn-main:hover {
+            background-color: var(--dark-purple);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 80%;
+            border-radius: 12px;
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-purple);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sobre / Dor do Mercado */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-pink);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--dark-purple);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Serviços */
+        .services-bg {
+            background-color: var(--light-pink);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .service-card h3 {
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        /* Diferenciais */
+        .diff-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .diff-item {
+            background: var(--white);
+            border: 1px solid #eee;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .diff-item h4 {
+            color: var(--dark-purple);
+            margin-bottom: 8px;
+        }
+
+        /* Contato / Prospecção */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            background: var(--light-pink);
+            padding: 50px;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            color: var(--dark-purple);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-purple);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .form-submit {
+            width: 100%;
+            background-color: var(--primary-pink);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background-color: var(--dark-purple);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-purple);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 5%;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 140px;
+            }
+            .contact-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo-container">
+            <!-- Ícone/Logo baseada no primeiro slide -->
+            <svg viewBox="0 0 100 100" class="logo-icon">
+                <rect width="100" height="100" fill="#c74b74" rx="20"/>
+                <path d="M30 40 L50 30 L70 40 L50 50 Z" fill="#ffffff" opacity="0.9"/>
+                <path d="M30 43 L50 53 L50 70 L30 60 Z" fill="#70284a"/>
+                <path d="M70 43 L50 53 L50 70 L70 60 Z" fill="#e07a9c"/>
+            </svg>
+            <h1>Box2Business</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">A Solução</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#diferenciais">Diferenciais</a></li>
+            </ul>
+        </nav>
+        <a href="#contato" class="cta-header">Fale Conosco</a>
+    </header>
+
+    <!-- Hero / Apresentação -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Visibilidade Ponta a Ponta para a sua Logística B2B</h2>
+            <p>Transforme a gestão de cargas com acondicionamentos inteligentes e rastreabilidade em tempo real[cite: 4, 5]. Elimine pontos cegos e proteja seus prazos operacionais[cite: 5, 10].</p>
+            <a href="#contato" class="btn-main">Solicitar Orçamento Personalizado</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Logística e Embalagens">
+        </div>
+    </section>
+
+    <!-- Sobre a Empresa / Problema -->
+    <section id="sobre">
+        <div class="section-title">
+            <h2>Por que a Box2Business?</h2>
+            <p>Superando as limitações dos sites de tracking tradicionais[cite: 3].</p>
+        </div>
+        <div class="about-grid">
+            <div class="card">
+                <h3>O Problema Atual</h3>
+                <p>Os sites de tracking convencionais mostram apenas por onde a mercadoria passou por último em portos ou fronteiras, gerando incertezas e atrasos no planejamento[cite: 3, 4].</p>
+            </div>
+            <div class="card">
+                <h3>Nossa Solução</h3>
+                <p>Embalagens e acondicionamentos sob medida equipados com chip localizador interno e sinalizador externo, oferecendo rastreio contínuo e em tempo real[cite: 7].</p>
+            </div>
+            <div class="card">
+                <h3>Impacto Estratégico</h3>
+                <p>Permite antecipar cenários, tomar decisões assertivas e garantir total transparência e previsibilidade para toda a sua cadeia de suprimentos[cite: 4, 5].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Oferecidos -->
+    <section id="servicos" class="services-bg">
+        <div class="section-title">
+            <h2>Nossos Serviços e Produtos</h2>
+            <p>Tecnologia e robustez integradas na estrutura de transporte.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Chip Localizador Interno</h3>
+                <p>Embutido de forma segura na confecção do acondicionamento, permitindo a localização exata e contínua da mercadoria[cite: 7, 8].</p>
+            </div>
+            <div class="service-card">
+                <h3>Sinalizador Externo</h3>
+                <p>Integrado à parte externa da embalagem para sinalização de rastreabilidade rápida e eficiente[cite: 8].</p>
+            </div>
+            <div class="service-card">
+                <h3>Software "Locate Your B2B"</h3>
+                <p>Plataforma própria e intuitiva com login exclusivo para o cliente acompanhar todos os produtos contratados com acesso vitalício[cite: 7, 8, 10].</p>
+            </div>
+            <div class="service-card">
+                <h3>Portfólio de Acondicionamentos</h3>
+                <p>Caixas de papelão, caixas de madeira, containers e IBCs customizados conforme as medidas estabelecidas pela sua operação[cite: 9, 10].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais Competitivos -->
+    <section id="diferenciais">
+        <div class="section-title">
+            <h2>Diferenciais Competitivos</h2>
+            <p>Vantagens exclusivas para otimizar os seus resultados logísticos.</p>
+        </div>
+        <div class="diff-list">
+            <div class="diff-item">
+                <h4>📍 Rastreio em Tempo Real</h4>
+                <p>Localização contínua e sem pontos cegos ao longo de todo o trajeto[cite: 10].</p>
+            </div>
+            <div class="diff-item">
+                <h4>🔒 Proteção Embutida</h4>
+                <p>Dispositivos protegidos contra furtos e danos internos na estrutura da embalagem[cite: 10].</p>
+            </div>
+            <div class="diff-item">
+                <h4>📦 Produção Sob Medida</h4>
+                <p>Desenvolvido milimetricamente para atender às especificidades e dimensões da sua carga[cite: 6, 10].</p>
+            </div>
+            <div class="diff-item">
+                <h4>♻️ Logística Reversa</h4>
+                <p>Compromisso com a sustentabilidade, recondicionamento e descarte adequado de componentes eletrônicos[cite: 12].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Prospecção / Contato -->
+    <section id="contato">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Pronto para revolucionar a sua logística?</h3>
+                <p>Entre em contato com nossa equipe especializada de Customer Success e descubra como a Box2Business pode blindar os prazos operacionais da sua empresa[cite: 4, 11].</p>
+            </div>
+            <div class="contact-form">
+                <form id="leadForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" required placeholder="Seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="empresa">Nome da Empresa</label>
+                        <input type="text" id="empresa" required placeholder="Sua empresa B2B">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail Corporativo</label>
+                        <input type="email" id="email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Como podemos ajudar?</label>
+                        <textarea id="mensagem" rows="4" placeholder="Descreva sua demanda logística..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Enviar Solicitação</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2026 Box2Business (B2B) - Todos os direitos reservados. Projeto Acadêmico / Inovação e Empreendedorismo.</p>
+    </footer>
+
+    <!-- Script Simples de Captura -->
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pelo contato! Nossa equipe de atendimento especializado retornará em breve.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
